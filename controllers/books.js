@@ -34,4 +34,16 @@ booksRouter.delete("/books/:bookId", async (req,res) => {
     res.redirect("/books");
 })
 
+booksRouter.get("/books/:bookId/edit", async (req,res) => {
+    const foundBook = await Book.findById(req.params.bookId);
+    res.render("books/update.ejs", {
+        book: foundBook,
+    });
+})
+
+booksRouter.put("/books/:bookId", async (req, res)=> {
+    await Book.findByIdAndUpdate(req.params.bookId, req.body);
+    res.redirect("/books");
+})
+
 export default booksRouter;
