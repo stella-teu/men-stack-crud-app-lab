@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection</title>
+</head>
+<body>
+    <h1>All Books</h1>
+    <ul>
+        <% books.forEach((book) => { %>
+            <li><h2><%= book.title %></h2>
+                <h3>By <%= book.author %></h3>
+                <p><%= book.description %></p>
+                <% if (book.pageCount){ %>
+                <p><%= book.pageCount %> pages</p>
+                <% } %>
+                <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete <%= book.title %></button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
